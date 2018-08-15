@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/fontawesome/fontawesome-all.min.css">
+    <script>
+        class BreakFront {
+            constructor(time, context, restricted) {
+                this.time = time;
+                this.paused = false;
+
+                if(restricted) {
+                    document.querySelector("div.actions").classList.add("restricted");
+                }
+
+                document.querySelector("div.close").addEventListener("click", () => Data.send("close", context));
+                document.querySelector("div.pauseplay").addEventListener("click", () => {
+                    Data.send("pauseplay", context)
+
+                    if(!this.paused) {
+                        document.querySelector("div.circle").classList.add("paused");
+                    } else {
+                        document.querySelector("div.circle").classList.remove("paused");
+                    }
+
+                    this.paused = !this.paused;
+                });
+            }
+
+            tick() {
+                let time = "";
+                if(this.time / 60 < 10) {
+                    time += '0' + Math.floor(this.time / 60);
+                }
+                else {
+                    time += Math.floor(this.time / 60);
+                }
+                time += ":";
+                if(this.time % 60 < 10) {
+                    time += '0' + this.time % 60;
+                }
+                else {
+                    time += this.time % 60;
+                }
+                document.getElementById("time").innerText = time;
+                this.time--;
+            }
+        }
+
+        class Data {
+            static send(type, context) {
+                nw.Window.get().window.dispatchEvent(new Event(type))
+            }
+        }
+    </script>
+
+    <style>
+        @keyframes glow {
+            0% {box-shadow: 0 0px 4px 0 rgba(255, 2155, 255, 0.4);}
+            50% {box-shadow: 0 0px 8px 8px rgba(255, 2155, 255, 0.6);}
+            100% {box-shadow: 0 0px 4px 0 rgba(255, 2155, 255, 0.4);}
+        }
+
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        .circle {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            margin: calc(50vh - 150px) auto auto auto;
+
+            border-radius: 50%;
+            text-align: center;
+            box-shadow: 0 0 4px 2px rgba(255, 2155, 255, 0.4);
+            animation: glow linear 5s infinite;
+        }
+
+        .circle.paused {
+            animation-play-state: paused;
+        }
+
+        .times {
+            line-height: 280px;
+            font-size: 60px;
+            color: white;
+        }
+
+        .message {
+            width: 280px;
+            position: absolute;
+            bottom: 65px;
+            padding: 10px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .actions.restricted {
+            display: none;
+        }
+
+        .actions div {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            bottom: 30px;
+            line-height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+
+        .close {
+            left:100px;
+            font-size: 25px;
+            border: 1px solid red;
+        }
+
+
+        .close:hover {
+            background-color: red;
+        }
+
+
+        .pauseplay {
+            right: 100px;
+            font-size: 15px;
+            border: 1px solid white;
+        }
+
+
+        .pauseplay .play {
+            display: none;
+        }
+
+
+        .pauseplay:hover {
+            color: black;
+            background-color: white;
+        }
+
+        .circle.paused .pauseplay .play {
+            display: inline-block;
+        }
+
+        .circle.paused .pauseplay .pause {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="circle">
+    <span class="times" id="time">00:00</span>
+
+    <div class="message">
+        <p>Take a break!</p>
+    </div>
+
+    <div class="actions">
+        <div class="close">
+            <span>&#215;</span>
+        </div>
+        <div class="pauseplay">
+            <span class="pause"><i class="fas fa-pause"></i></span>
+            <span class="play"><i class="fas fa-play"></i></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

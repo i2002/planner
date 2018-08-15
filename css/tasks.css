@@ -1,0 +1,186 @@
+/* ######## Task order change animations ######## */
+@keyframes fadein {
+    from {opacity: 0.4; background-color: white; border-top: 1px solid #C3E2FF; border-bottom: 1px solid #C3E2FF;}
+    to {opacity: 0.6;background-color: #C3E2FF; border: 1px solid transparent;}
+}
+
+@keyframes blinkover {
+    0% {background-color: #C3E2FF;}
+    50% {background-color: #B6D1EC;}
+    100% {background-color: #C3E2FF;}
+}
+
+@keyframes fademove {
+    0% {opacity: 1; color: black;}
+    25% {opacity: 0.3; color: #0000b3;}
+    100% {opacity: 1; color: black;}
+}
+
+@keyframes active {
+    0% {box-shadow: 0px 0px 2px 1px rgba(13, 73, 13, 0.4) inset;}
+    50% {box-shadow: 0px 0px 2px 1px rgba(13, 73, 13, 0.8) inset;}
+    100% {box-shadow: 0px 0px 2px 1px rgba(13, 73, 13, 0.4) inset;}
+}
+
+/* ######## General tasks settings ######## */
+/* - Container - */
+.tasks.card .content {
+    max-height: calc(100vh - 97px);
+    overflow: auto;
+}
+
+.tasks.card #tasks li {
+    position: relative;
+    height: 25px;
+    border: 1px solid transparent;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+/* - Item components - */
+.tasks.card #tasks li .button {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding: 10px;
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.tasks.card #tasks li .button:hover {
+    color: darkblue;
+    cursor: pointer;
+}
+
+.tasks.card #tasks li:hover .button {
+    opacity: 1;
+}
+
+.tasks.card #tasks li .button.playStop {
+    left: 0;
+}
+
+.tasks.card #tasks li .button.edit {
+    right: 30px;
+}
+
+.tasks.card #tasks li .button.mv2b {
+    right: 30px;
+    display: none;
+}
+
+.tasks.card #tasks li .remove {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10px 12px 10px 12px;
+}
+
+.tasks.card #tasks li .remove:hover {
+    color: #f44336;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.tasks.card #tasks li .title {
+    margin-left: 25px;
+    transition: 0.2s;
+}
+
+.tasks.card #tasks li .times {
+    position: absolute;
+    top: 0;
+    right: 150px;
+    left: 36px;
+    padding: 10px 0;
+    text-align: right;
+    color: grey;
+    transition: 0.3s;
+    user-select: none;
+    -moz-user-select: none;
+}
+
+.tasks.card #tasks li .animation {
+    position: absolute;
+    right: 100%;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    background-color: blue;
+    transition: linear 1s;
+}
+
+/* ######## Case specific styles ######## */
+/* - checked - */
+.tasks.card #tasks li.checked {
+    color: grey;
+    text-decoration: line-through;
+}
+
+.tasks.card #tasks li.checked .times {
+    color: white;
+}
+
+.tasks.card #tasks li.checked .button, div.tasks.card #tasks li.checked .animation {
+    display: none;
+}
+
+/* - overtime - */
+.tasks.card #tasks li.overtime .times {
+    color: red;
+}
+
+.tasks.card #tasks li.overtime .animation {
+    height: 1px;
+}
+
+.card .information.hidden {
+    display: none;
+}
+
+/* - active - */
+.tasks.card #tasks li.active {
+    box-shadow: 0px 0px 2px 1px #228B22 inset;
+    animation: active 3s infinite;
+}
+
+/* - drag and drop cases - */
+.tasks.card #tasks li.over {
+    opacity: 0.6;
+    background-color: #C3E2FF;
+    animation: fadein 1s 1 0s, blinkover 2s infinite 1s;
+}
+
+.tasks.card #tasks li.move {
+    animation: fademove 0.8s;
+}
+
+.tasks.card #tasks.dragging li:hover {
+    background-color: transparent;
+}
+
+.tasks.card #tasks.dragging li:hover .button {
+    display: none;
+}
+
+/* - plan mode - */
+.main.planificare .tasks.card #tasks li .button.playStop {
+    display: none;
+}
+
+/* - review mode - */
+.main.review .tasks.card .content {
+    max-height: calc(100vh - 286px);
+}
+
+.main.review .tasks.card #tasks li .button.edit, 
+.main.review .tasks.card #tasks li .button.playStop,
+.main.review .tasks.card #tasks li.checked .button.mv2b {
+    display: none;
+}
+
+.main.review .tasks.card #tasks li .button.mv2b {
+    display: block;
+    opacity: 1;
+}

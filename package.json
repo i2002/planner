@@ -1,0 +1,65 @@
+{
+  "name": "planner",
+  "version": "1.0.0",
+  "description": "A simple time management app",
+  "author": "Tudor Butufei",
+
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/i2002/planner"
+  },
+  "keywords": [
+    "planner",
+    "time",
+    "organizing",
+    "pomodoro"
+  ],
+
+  "main": "index.html",
+  "window": {
+    "width": 1200,
+    "height": 700,
+    "icon": "res/img/planner.png"
+  },
+
+  "scripts": {
+    "start": "node_modules/.bin/nw .",
+    "build": "sh .tools/build.sh"
+  },
+  "dependencies": {
+    "freedesktop-notifications": "^1.2.3"
+  },
+  "devDependencies": {
+    "nwjs-builder-phoenix": "^1.14.6",
+    "nwjs": "^1.4.4"
+  },
+
+  "build": {
+    "buildDir": "dist/",
+    "targets": [
+      "nsis",
+      "zip"
+    ],
+    "nwVersion": "0.32.2",
+    "appName": "Planner",
+    "outputPattern": "${NAME}_v${VERSION}_${PLATFORM}-${ARCH}",
+    "appId": "com.i2002.planner",
+    "win": {
+      "companyName": "i2002",
+      "productName": "Planner",
+      "copyright": "(C) 2018 Tudor Butufei",
+      "icon": "res/img/planner.ico"
+    },
+    "mac": {
+      "displayName": "Planner",
+      "name": "Planner",
+      "description": "A simple time management app",
+      "copyright": "Copyright © 2018  Tudor Butufei",
+      "icon": "res/img/planner.icns"
+    },
+    "nsis": {
+      "icon": "res/img/planner.ico"
+    }
+  }
+}

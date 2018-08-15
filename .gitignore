@@ -1,0 +1,9 @@
+node_modules/
+package-lock.json
+
+.vscode
+.tools/appimagetool-x86_64.AppImage
+.tools/appimagetool-i686.AppImage
+dist
+
+.DS_Store

@@ -1,0 +1,86 @@
+/* ######## Dnd animations ######## */
+@keyframes fadeinnotes {
+    from {opacity: 0.4; background-color: white; box-shadow: 0 0px 2px 1px rgba(195, 226, 255, 0.16) inset;}
+    to {opacity: 0.6;background-color: #C3E2FF; }
+}
+
+/* ######## Container ######## */
+.card.notes .content {
+    max-height: calc(50vh - 72px);
+    overflow: auto;
+}
+
+.card.notes #notes li {
+    position: relative;
+    margin: 5px 0 0 0;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0 0px 2px 1px rgba(0, 0, 0, 0.16) inset;
+    font-size: 15px;
+}
+
+.card.notes #notes li:hover {
+    background-color: initial;
+}
+
+/* ######## Item components ######## */
+.card.notes #notes li .title{
+    font-size: 18px;
+}
+
+.card.notes #notes li pre {
+    margin: 0 0 0 4px;
+    white-space: pre-wrap;
+}
+
+.card.notes #notes li .button {
+    position: absolute;
+    top: 5px;
+    right: 25px;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.card.notes #notes li .button:hover {
+    opacity: 1;
+}
+
+.card.notes #notes li .remove {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    opacity: 0.5;
+}
+
+.card.notes #notes li .remove:hover {
+    color: red;
+    font-weight: bold;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.card.nodes #notes.dragging li:hover .button {
+    display: none;
+}
+
+/* ######## Case specific styles ######## */
+/* - review - */
+.main.review .card.notes .content {
+    max-height: calc(50vh - 166px);
+}
+
+/* - drag and drop cases - */
+.card.nodes #notes li.over {
+    opacity: 0.6;
+    background-color: #C3E2FF;
+    animation: fadeinnotes 1s 1 0s, blinkover 2s infinite 1s;
+}
+
+.card.nodes #notes li.move {
+    animation: fademove 0.8s;
+}
+
+.card.nodes #notes.dragging li:hover {
+    background-color: transparent;
+}

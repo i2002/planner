@@ -1,0 +1,54 @@
+.card.review {
+    position: absolute;
+    left: 8px;
+    bottom: -199px;
+    right: 8px;
+    max-height: 189px;
+    transition: 0.5s linear;
+}
+
+.card.review .content {
+    display: flex;
+    max-height: 135px;
+    overflow: auto;
+}
+
+.card.review .list {
+    max-height: 121px;
+    overflow: auto;
+    width: 50%;
+    margin: 0px 5px 0 0;
+}
+
+.card.review ol {
+    margin: 0;
+    padding-left: 30px;
+}
+
+.card.review textarea {
+    position: sticky;
+    margin: 2px 5px 5px 0;
+    width: 50%;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    transition: 0.5s;
+}
+
+.card.review textarea:focus {
+    outline:none;
+    border: 1px solid #86A8DF;
+}
+
+.card.review .buttons {
+    display: flex;
+}
+
+.card.review .buttons button {
+    width: 50%;
+}
+
+.main.review .card.review {
+    bottom: 10px;
+}

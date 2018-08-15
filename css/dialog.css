@@ -1,0 +1,157 @@
+.dialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(222, 222, 222, 0.5);
+    z-index: 1000;
+    transition: 0.5s;
+}
+
+.dialog .head {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 40px;
+    transition: 0.5s;
+}
+
+.dialog .content {
+    position: fixed;
+    top: 40px;
+    right: 0;
+    bottom: 0;
+    width: 30%;
+    overflow: auto;
+    background-color: white;
+    transition: 0.5s;
+}
+
+.dialog h1 {
+    margin: 0;
+    height: 40px;
+    padding-left: 20px;
+    background-color: #3392ff;
+}
+
+.dialog .close {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    width: 20px;
+    display: inline-block;
+    line-height: 40px;
+    color: white;
+    cursor: pointer;
+}
+
+.dialog .close:hover {
+    color: red;
+}
+
+.dialog section {
+    margin-top: 20px;
+    padding: 0 10px 0 10px;
+}
+
+.dialog label {
+    padding: 12px 12px 12px 0;
+}
+
+/* Input styling */
+.dialog input, .dialog textarea {
+    margin: 8px 0;
+    padding: 12px;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 10px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    transition: 0.5s;
+}
+
+.dialog textarea {
+    border-top: 1px solid #ccc;
+    height: 150px;
+}
+
+.dialog input[type="submit"], .dialog input[type="button"] {
+    border-radius: 2px;
+    border: none;
+    color: white;
+}
+
+.dialog input[type="checkbox"] {
+    width: auto;
+    margin: 1px 10px 0 0;
+    float: right;
+}
+
+.dialog input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.dialog input.wrong {
+    border-color: red;
+}
+
+.dialog input:focus::-webkit-input-placeholder {
+    color: #4978d4;
+}
+
+.dialog input:focus {
+    outline:none;
+    border-bottom: 1px solid #86A8DF;
+}
+
+.dialog textarea:focus {
+    outline:none;
+    border-top: 1px solid #86A8DF;
+    border-bottom: 1px solid #86A8DF;
+}
+
+/* Input group styling */
+.dialog .group {
+    display: flex;
+}
+
+.dialog .group input {
+    width: auto;
+}
+
+.dialog .group span {
+    padding: 12px 6px;
+    margin: 8px 0;
+}
+
+.dialog .buttons {
+    padding: 0 10px;
+}
+
+/* ____ Button color theme ____ */
+.dialog input.info {background-color: #2196F3;} /* Blue */
+.dialog input.info:hover {background: #0b7dda;}
+
+.dialog input.success {background-color: #4CAF50;} /* Green */
+.dialog input.success:hover {background-color: #46a049;}
+
+.dialog input.warning {background-color: #ff9800;} /* Orange */
+.dialog input.warning:hover {background: #e68a00;}
+
+.dialog input.danger {background-color: #f44336;} /* Red */
+.dialog input.danger:hover {background: #da190b;}
+
+.dialog input.default {background-color: #c2c2c2; color: black;} /* Gray */
+.dialog input.default:hover {background: #b3b3b3;}
+
+@media screen and (min-width: 421px) and (max-width: 780px) {
+    .dialog .head {
+        width: 50%;
+    }
+
+    .dialog .content {
+        width: 50%;
+    }
+}

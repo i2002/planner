@@ -1,0 +1,21 @@
+header .navigator {
+    margin-left: auto;
+    margin-right: 10px;
+    display: flex;
+}
+
+header .navigator div {
+    padding: 7px;
+    font-size: 26px;
+    color: #00336D;
+    line-height: 26px;
+}
+
+header .navigator div:hover {
+    color: white;
+    cursor: pointer;
+}
+
+header .navigator .rmv {
+    display: none;
+}

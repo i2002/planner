@@ -1,0 +1,94 @@
+/* ######## Container ######## */
+.card.backlog .content {
+    max-height: calc(50vh - 72px);
+    overflow: auto;
+}
+
+.card.backlog #backlog li {
+    position: relative;
+    height: 25px;
+    border: 1px solid transparent;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.card.backlog #backlog li:hover {
+    background-color: initial;
+}
+
+/* ######## Item components ######## */
+.card.backlog #backlog li .button {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding: 10px 12px;
+    transition: 0.4s;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.card.backlog #backlog li .button.moveBacklog {
+    left: 0;
+}
+
+.card.backlog #backlog li .button:hover {
+    color: blue;
+    opacity: 1;
+}
+
+.card.backlog #backlog li .remove {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10px 12px 10px 12px;
+}
+
+.card.backlog #backlog li .remove:hover {
+    color: #f44336;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.card.backlog #backlog li .title {
+    margin-left: 25px;
+    transition: 0.2s;
+}
+
+.card.backlog #backlog li .time {
+    position: absolute;
+    top: 0;
+    right: 50px;
+    left: 36px;
+    padding: 10px 0;
+    text-align: right;
+    color: grey;
+    transition: 0.3s;
+    user-select: none;
+    -moz-user-select: none;
+}
+
+/* ######## Case specific styles ######## */
+/* - drag and drop cases - */
+.card.backlog #backlog li.over {
+    opacity: 0.6;
+    background-color: #C3E2FF;
+    animation: fadein 1s 1 0s, blinkover 2s infinite 1s;
+}
+
+.card.backlog #backlog li.move {
+    animation: fademove 0.8s;
+}
+
+.card.backlog #backlog.dragging li:hover {
+    background-color: transparent;
+}
+
+.card.backlog #backlog.dragging li:hover .button {
+    display: none;
+}
+
+/* - review - */
+.main.review .card.backlog .content {
+    max-height: calc(50vh - 167px);
+}

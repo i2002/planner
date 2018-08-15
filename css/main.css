@@ -1,0 +1,141 @@
+/* Import css for all components */
+@import url("pomodoro.css");
+@import url("tasks.css");
+@import url("backlog.css");
+@import url("notes.css");
+@import url("review.css");
+@import url("navigator.css");
+@import url("dialog.css");
+@import url("popup.css");
+
+/* ######## General settings ######## */
+body {
+    background-color: #edeff0;
+    overflow: hidden;
+}
+
+/* Header */
+header {
+    position: fixed;
+    display: flex;
+    height: 40px;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #1483FF;
+    z-index: 100;
+}
+
+header h1 {
+    margin: 0 0 0 15px;
+    color: #00336D;
+}
+
+/* Main app sections */
+.main {
+    margin-top: 40px;
+    text-align: justify;
+}
+.main .tasks {
+    display: inline-block;
+    width: calc(70% - 10px);
+    vertical-align: top;
+    transition: 0.5s linear;
+}
+
+.main .side {
+    display: inline-block;
+    width: calc(30% - 10px);
+    vertical-align: top;
+    transition: 0.5s linear;
+    overflow: hidden;
+}
+
+.main.work .tasks {
+    width: calc(100% - 20px);
+}
+
+.main.work .side {
+    margin-right: -30%;
+    opacity: 0;
+}
+
+/* ######## Main style components ######## */
+/* Cards */
+.card {
+    position: relative;
+    margin: 5px;
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: white;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16);
+}
+
+.card .head {
+    display: flex;
+    margin: 1px 5px 2px 5px;
+}
+
+.card .head .title {
+    width: 50%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.card .head .actions {
+    width: 50%;
+    text-align: right;
+}
+
+.card .head .action {
+    font-size: 20px;
+    width: 20px;
+    color: black;
+    user-select: none;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.card .head .action:hover {
+    color: black;
+    opacity: 1;
+}
+
+.card .information {
+    display: block;
+    padding: 10px;
+    line-height: 20px;
+    color: gray;
+}
+
+/* TODO: this may be specific options */
+.card ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.card ul li {
+    margin: 0;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.card ul li:hover {
+    background-color: #ddd;
+}
+
+@media screen and (min-width: 421px) and (max-width: 780px) {
+    .main .tasks {
+        width: calc(50% - 10px);
+    }
+
+    .main .side {
+        width: calc(50% - 10px);
+    }
+
+    .main.work .side {
+        margin-right: -50%;
+    }
+}

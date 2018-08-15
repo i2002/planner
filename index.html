@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Planner</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/fontawesome/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="src/aplicatie.js" charset="utf-8"></script>
+
+        <script src="src/pomodoro.js" charset="utf-8"></script>
+        <script src="src/tasks.js" charset="utf-8"></script>
+        <script src="src/notes.js" charset="utf-8"></script>
+        <script src="src/backlog.js" charset="utf-8"></script>
+        <script src="src/review.js" charset="utf-8"></script>
+
+        <script src="src/gui.js" charset="utf-8"></script>
+        <script src="src/dialogs.js" charset="utf-8"></script>
+        <script src="src/break.js" charset="utf-8"></script>
+
+        <script src="src/settings.js" charset="utf-8"></script>
+        <script src="src/notifications.js" charset="utf-8"></script>
+        <script src="src/draggable.js" charset="utf-8"></script>
+
+        <script>
+            // Run app when DOM loaded
+            var aplicatie;
+            document.addEventListener("DOMContentLoaded", () => {
+                aplicatie = new Aplicatie();
+            })
+        </script>
+    </head>
+    <body>
+        <header>
+            <h1>Planner</h1>
+            <div class="pomodoro idle" id="pomodoro">
+                <i class="fas fa-clock statusIcon"></i>
+                <i class="toggleState fas fa-play" title="Start working"></i>
+                <span class="time">50:00</span>
+                <div class="animation"></div>
+            </div>
+            <div class="navigator" id="navigator">
+                <div class="addTask"><i class="fas fa-plus addTask" title="Add task"></i></div>
+                <div class="finish rmv"><i class="fas fa-power-off finish"></i></div>
+                <div class="review rmv"><i class="far fa-calendar-check review" title="Finish work day"></i></div>
+                <div class="settings"><i class="fas fa-cog settings" title="Settings"></i></div>
+            </div>
+        </header>
+        <section class="main planificare">
+            <div class="card tasks">
+                <div class="head">
+                    <div class="title">Today</div>
+                    <div class="actions"></div>
+                </div>
+                <span class="information">You have no tasks yet</span>
+                <div class="content">
+                    <ul id="tasks"></ul>
+                </div>
+            </div><!--
+            --><aside class="side">
+                <div class="card notes">
+                    <div class="head">
+                        <div class="title">Notes</div>
+                        <div class="actions">
+                            <span class="action add"><i class="fa fa-plus" title="Add note"></i></span>
+                            <span class="action removeAll"><i class="fa fa-times" title="Remove all"></i></span>
+                        </div>
+                    </div>
+                    <span class="information">No notes</span>
+                    <div class="content">
+                        <ul id="notes"></ul>
+                    </div>
+                </div>
+                <div class="card backlog">
+                    <div class="head">
+                        <div class="title">Backlog</div>
+                        <div class="actions">
+                            <span class="action moveAll"><i class="fas fa-angle-double-left" title="Move all"></i></span>
+                            <span class="action dismissAll"><i class="fas fa-times" title="Dismiss all"></i></span>
+                        </div>
+                    </div>
+                    <span class="information">No backlog</span>
+                    <div class="content">
+                        <ul id="backlog"></ul>
+                    </div>
+                </div>
+            </aside>
+            <div class="card review">
+                <div class="head">
+                    <div class="title">Review</div>
+                    <div class="actions"></div>
+                </div>
+                <div class="content">
+                    <div class="list">
+                        <ol>
+                            <li>See which of the planned tasks you have finished today</li>
+                            <li>Unfinished tasks can be moved to backlog and done in another day or be removed</li>
+                            <li>You can create a note to be seen next time when you plan you actions</li>
+                            <li>You write a few lines about how it was today</li>
+                        </ol>
+                    </div>
+                    <textarea name="review" placeholder="How it was today?"></textarea>
+                </div>
+                <div class="buttons">
+                    <button class="return">Return to work</button>
+                    <button class="finish">Finish work day</button>
+                </div>
+            </div>
+        </section>
+        <div class="popup hidden">
+            <span class="text">Hi</span>
+            <span class="close">&#215;</span>
+        </div>
+    </body>
+</html>
