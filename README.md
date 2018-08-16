@@ -3,6 +3,8 @@
 ### About ###
 Planner is an organizing tool for computer. It combines the [Pomodoro technique](https://en.wikipedia.org/wiki/Pomodoro_Technique) and a simple TO DO list.
 
+[Live demo](https://i2002.github.io/planner/)
+
 ### Screenshots ###
 ![Screenshot1](https://github.com/i2002/planner/raw/master/screenshots/screenshot1.png)
 
