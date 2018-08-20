@@ -45,12 +45,12 @@ class TaskController {
 
         switch (className) {
             case "playStop":
-                aplicatie.tasks.updateTask(task.id, {task:{state: (task.state == "running") ? "paused" : "running"}}, ["state"]);
-
                 // pause the active task
                 if(task.state == "paused" && aplicatie.tasks.active != null) {
                     aplicatie.tasks.updateTask(aplicatie.tasks.active.id, {task:{state:"paused"}}, ["state"]);
                 }
+
+                aplicatie.tasks.updateTask(task.id, {task:{state: (task.state == "running") ? "paused" : "running"}}, ["state"]);
                 break;
             case "times":
                 if(task.state != "done") {
@@ -90,10 +90,8 @@ class TaskController {
                     this.paused = false;
 
                     //start first task
-                    if(this.active == null && this.taskList.get(0) != undefined && aplicatie.settings.workflow.autostart_first && this.state == "planificare") {
-                        this.active = this.taskList.get(0);
-                        // this.active.update({task:{state:"running"}}, ["state"]);
-                        // this.view.updateTask(this.active, ["state"]);
+                    if(aplicatie.settings.workflow.autostart_first  && this.state == "planificare" && this.active == null && this.order.next(this.order[0]) != null) {
+                        this.active = this.taskList.get(this.order.next(this.order[0]));
                         this.updateTask(this.active.id, {task:{state:"running"}}, ["state"]);
                     }
                 }
@@ -146,6 +144,7 @@ class TaskController {
                     case "state":
                         switch (task.state) {
                             case "paused":
+                            case "done":
                                 if(this.active == task) {
                                     this.active = null;
                                 }
@@ -259,10 +258,14 @@ class TasksOrder extends Array {
     }
 
     next(id) {
-        let i;
-        for(i = id + 1; i < this.length && this.completed.indexOf(this[i]) != -1; i++);
+        let i_id = this.indexOf(id);
+        let i = i_id + 1;
+        if(this.completed.indexOf(this[i_id]) == -1)
+            return this[i_id];
+
+        for(; i < this.length && this.completed.indexOf(this[i]) != -1; i++);
         if(this.length == i)
-            for(i = 0; i < this.indexOf(id) && this.completed.indexOf(this[i]) != -1; i++);
+            for(i = 0; i < i_id && this.completed.indexOf(this[i]) != -1; i++);
 
         if(i == this.indexOf(id))
             return null;
