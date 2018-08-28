@@ -9,6 +9,10 @@ class GUI {
         setTimeout(() => {
             if(aplicatie.context == "nw") {
                 this.appWindow = new AppWindow();
+            } else {
+                window.onbeforeunload = () => {
+                    aplicatie.quit(true);
+                }
             }
         }, 10);
         setTimeout(() => {this.navigator = new Navigator(this);}, 10);
@@ -78,7 +82,7 @@ class AppWindow {
             let menu = new nw.Menu();
             menu.append(new nw.MenuItem({type: 'normal', label: "Start", click: () => aplicatie.changeState("work")}));
             menu.append(new nw.MenuItem({type: 'normal', label: "Show", click: () => this.window.show()}));
-            menu.append(new nw.MenuItem({type: 'normal', label: "Exit", click: () => aplicatie.quit()}));
+            menu.append(new nw.MenuItem({type: 'normal', label: "Exit", click: () => aplicatie.quit(true)}));
             this.tray.menu = menu;
 
             // set icon
@@ -108,7 +112,7 @@ class AppWindow {
                 aplicatie.gui.appWindow.tray.menu = this.tray.menu;
 
                 this.tray.icon = this.trayIconName + "planner.png";
-                this.tray.tooltip = "Planner - Review";
+                this.tray.tooltip = "Review";
 
                 this.window.focus();
                 break;

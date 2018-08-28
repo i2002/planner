@@ -14,11 +14,26 @@ class Aplicatie {
         this.settings = Settings.load(this.context);
         let data_notes = localStorage.getItem("notes");
         let data_backlog = localStorage.getItem("backlog");
+        let data_session = localStorage.getItem("session");
 
         if(data_notes)
             setTimeout(() => {JSON.parse(DataFormat.jsonEscape(data_notes)).notes.forEach(item => aplicatie.notes.add(item)); data_notes = null;}, 100);
         if(data_backlog)
             setTimeout(() => {JSON.parse(DataFormat.jsonEscape(data_backlog)).backlog.forEach(item => aplicatie.backlog.add(item)); data_backlog = null;}, 100);
+        if(data_session) {
+            setTimeout(() => {JSON.parse(DataFormat.jsonEscape(data_session)).session.forEach(item => aplicatie.tasks.createTask(item))}, 100);
+            setTimeout(() => {
+                let i = 0; 
+                JSON.parse(DataFormat.jsonEscape(data_session)).session.forEach(item => {
+                    aplicatie.tasks.updateTask(i, item);
+                    if(item.task.state == "done") {
+                        aplicatie.tasks.order.complete(parseInt(i));
+                    }
+                    i++;
+                }); 
+                data_session = null;
+            }, 200);
+        }
 
         // - Initialize components
         this.clock = new Clock();
@@ -60,7 +75,11 @@ class Aplicatie {
     }
 
     quit(saveSession = false) {
-        //TODO: implement session save if quit while not done
+        // save task state
+        if(saveSession) {
+            localStorage.setItem("session", JSON.stringify({session: this.tasks.getAll()}));    
+        }
+
         // save notes & backlog
         localStorage.setItem("notes", JSON.stringify({notes: this.notes.getAll()}));
         localStorage.setItem("backlog", JSON.stringify({backlog: this.backlog.getAll()}));

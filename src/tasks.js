@@ -211,6 +211,12 @@ class TaskController {
         })
         return result;
     }
+
+    getAll() {
+        let result = [];
+        this.order.forEach(id => result.push({task: this.taskList.get(id)}));
+        return result;
+    }
 }
 
 // __________ Tasks - TaskOrder __________

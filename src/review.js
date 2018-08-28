@@ -22,6 +22,7 @@ class Review {
             session++;
         }
         localStorage.setItem(`${date}_${session}`, JSON.stringify(data));
+        localStorage.removeItem("session");
 
         aplicatie.quit();
     }
