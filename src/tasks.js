@@ -58,7 +58,7 @@ class TaskController {
                     aplicatie.tasks.order.complete(parseInt(task.id));
 
                     //start next task
-                    if(aplicatie.settings.workflow.autostart_next && aplicatie.tasks.state == "work") {
+                    if(aplicatie.settings.workflow.autostart_next && aplicatie.tasks.state == "work" && aplicatie.tasks.active == null) {
                         let nextId = aplicatie.tasks.order.next(task.id);
                         if(nextId != null) {
                             aplicatie.tasks.updateTask(nextId, {task:{state:"running"}}, ["state"]);
@@ -332,8 +332,8 @@ class TasksView {
         if(state == "work" && oldState == "review") {
             let i = 0;
             this.parent.childNodes.forEach((node) => {
-                if(node.id.slice(-1) != this.controller.order[i]) {
-                    this.parent.insertBefore(document.getElementById(`task_${i}`), node);
+                if(node.id.slice(5) != this.controller.order[i]) {
+                    this.parent.insertBefore(document.getElementById(`task_${this.controller.order[i]}`), node);
                 }
                 i++;
             })
@@ -422,6 +422,9 @@ class TasksView {
                         document.querySelector(selector).classList.add("overtime");
                     } else {
                         document.querySelector(selector + ".animation").style.right = `${(1- (task.timeSpent + 1) / task.timePlanned) *100}%`;
+                        if(task.timeSpent == 0 && task.state != "running") {
+                            document.querySelector(selector + ".animation").style.right = "100%";
+                        }
                         document.querySelector(selector).classList.remove("overtime");
                     }
                     break;
