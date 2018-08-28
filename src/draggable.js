@@ -25,8 +25,6 @@ class Draggable {
     }
 
     static dragOver(e) {
-        e.preventDefault() //allow drop
-
         let over;
         for(over = e.target; over.tagName.toLowerCase() != "li" && over.tagName.toLowerCase() != "html"; over = over.parentNode);
         if(over.tagName.toLowerCase() != "li") {
@@ -34,6 +32,12 @@ class Draggable {
         }
         //let dragged = document.getElementById(e.dataTransfer.getData("text"));
         let dragged = document.getElementById(draggedId);
+
+        if(dragged.id.slice(0, dragged.id.indexOf("_")) != over.id.slice(0, over.id.indexOf("_"))) {
+            return;
+        } else {
+            e.preventDefault() //allow drop
+        }
 
         if(dragged.id == over.id) {
             over.classList.add("over");
@@ -63,7 +67,7 @@ class Draggable {
 
         let order = [];
         dragged.parentNode.childNodes.forEach((item) => {
-            order.push(parseInt(item.id.slice(-1)));
+            order.push(parseInt(item.id.slice(item.id.indexOf("_") + 1)));
             item.classList.remove("move");
         })
 
