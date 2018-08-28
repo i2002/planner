@@ -1,2 +1,7 @@
-v. 1.0. (2018.08.15)
+v. 1.0.1 (2018.08.28)
+ - added auto save session
+ - fixed task and timer flow
+ - fixed drag and drop
+
+v. 1.0.0 (2018.08.15)
  - initial release

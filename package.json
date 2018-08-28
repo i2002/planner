@@ -1,9 +1,8 @@
 {
   "name": "planner",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple time management app",
   "author": "Tudor Butufei",
-
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -15,14 +14,12 @@
     "organizing",
     "pomodoro"
   ],
-
   "main": "index.html",
   "window": {
     "width": 1200,
     "height": 700,
     "icon": "res/img/planner.png"
   },
-
   "scripts": {
     "start": "node_modules/.bin/nw .",
     "build": "sh .tools/build.sh"
@@ -34,14 +31,13 @@
     "nwjs-builder-phoenix": "^1.14.6",
     "nwjs": "^1.4.4"
   },
-
   "build": {
     "buildDir": "dist/",
     "targets": [
       "nsis",
       "zip"
     ],
-    "nwVersion": "0.32.2",
+    "nwVersion": "0.32.4",
     "appName": "Planner",
     "outputPattern": "${NAME}_v${VERSION}_${PLATFORM}-${ARCH}",
     "appId": "com.i2002.planner",
