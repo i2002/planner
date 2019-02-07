@@ -88,6 +88,15 @@ class Aplicatie {
                 location.reload();
                 break;
             case "nw":
+                // close active windows
+                if(aplicatie.pomodoro.timer.break) {
+                    aplicatie.pomodoro.timer.break.destroy();
+                }
+
+                if(aplicatie.pomodoro.timer.applet) {
+                    aplicatie.pomodoro.timer.applet.destroy();
+                }
+
                 nw.Window.get().close(true);
                 break;
         }

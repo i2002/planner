@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Planner</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script>
+            class AppletFront {
+                constructor(time) {
+                    let w = nw.Window.get();
+                    w.moveTo(w.window.screen.availWidth - 100, w.window.screen.availHeight - 100);
+                    w.setShowInTaskbar(false);
+                    w.show();
+
+                    this.time = time;
+                }
+
+                tick() {
+                    document.querySelector(".times").innerText = Math.floor(this.time / 60);
+
+                    if(this.time == 600)
+                        document.querySelector(".circle").classList.add("green");
+                    if(this.time == 120)
+                        document.querySelector(".circle").classList.add("red");
+                    this.time--;
+                }
+
+                //TODO: implement applet show details
+                showDetails(title, time) {
+
+                }
+            }
+        </script>
+        
+        <style>
+            @keyframes glow {
+                0% {box-shadow: 0 0px 4px 0 rgba(31, 41, 175, 0.4);}
+                50% {box-shadow: 0 0px 8px 8px rgba(31, 46, 255, 0.6);}
+                100% {box-shadow: 0 0px 4px 0 rgba(31, 41, 175, 0.4);}
+            }
+
+            @keyframes glowgreen {
+                0% {box-shadow: 0 0px 4px 0 rgba(31, 175, 86, 0.4);}
+                50% {box-shadow: 0 0px 8px 8px rgba(2, 131, 82, 0.6);}
+                100% {box-shadow: 0 0px 4px 0 rgba(31, 175, 86, 0.4);}
+            }
+
+            @keyframes glowred {
+                0% {box-shadow: 0 0px 4px 0 rgba(175, 31, 31, 0.4);}
+                50% {box-shadow: 0 0px 8px 8px rgba(131, 6, 2, 0.6);}
+                100% {box-shadow: 0 0px 4px 0 rgba(175, 31, 31, 0.4);}
+            }
+
+            .work_clock {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 120px;
+                height: 100vh;
+                /* background-color: #6e6e6e; */
+                color: darkblue;
+            }
+
+            .work_clock .circle {
+                width: 100px;
+                height: 100px;
+                position: relative;
+                margin: calc(50vh - 50px) auto auto auto;
+
+                border-radius: 50%;
+                text-align: center;
+                box-shadow: 0 0 4px 2px rgba(31, 41, 175, 0.4);
+                animation: glow linear 5s infinite;
+
+                background-color: white;
+            }
+
+            .work_clock .circle.green {
+                animation: glowgreen linear 5s infinite;
+            }
+
+            .work_clock .circle.red {
+                animation: glowred linear 5s infinite;
+            }
+
+            .work_clock .times {
+                line-height: 100px;
+                font-size: 60px;
+            }
+
+            body {
+                height: 120px;
+                width: 300px;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body style="background-color:rgba(90,90,90,0);">
+        <section class="work_clock">
+            <div class="circle">
+                <span class="times" id="time">50</span>
+            </div>
+        </section>
+    </body>
+</html>

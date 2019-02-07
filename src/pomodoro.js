@@ -147,6 +147,11 @@ class PomoTimer {
         if(this.mode == "break" && aplicatie.settings.break.enable_break) {
             this.break = new Break(duration);
         }
+
+        //TODO: add settings to disable applet
+        if(this.mode == "work") {
+            this.applet = new Applet(duration);
+        }
     }
 
     tick() {
@@ -154,6 +159,10 @@ class PomoTimer {
         this.timeHooks(this.duration);
         if(this.break) {
             this.break.tick();
+        }
+
+        if(this.applet) {
+            this.applet.tick();
         }
     }
 
@@ -164,6 +173,11 @@ class PomoTimer {
                 if(this.break) {
                     this.break.destroy();
                     this.break = null;
+                }
+
+                if(this.applet) {
+                    this.applet.destroy();
+                    this.applet = null;
                 }
                 break;
             case 600:
