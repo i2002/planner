@@ -57,8 +57,6 @@ class Break {
             if(aplicatie.context == "nw") {
                 this.window.removeAllListeners(["blur", "closed", "loaded"]);
                 this.window.close();
-            } else if (aplicatie.context == "webview") {
-                window.external.invoke(JSON.stringify({action:"close_break"}))
             }
         }
     }
